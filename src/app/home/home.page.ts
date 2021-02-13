@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { Plugins } from '@capacitor/core';
+import 'capacitor-plugin-ffmpeg';
+
+const { FFmpeg } = Plugins;
 
 @Component({
   selector: 'app-home',
@@ -7,6 +11,11 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  public results = ""
 
+  constructor() { }
+
+  async exec() {
+    this.results = (await FFmpeg.exec('test')).value;
+  }
 }
